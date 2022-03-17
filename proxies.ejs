@@ -1,0 +1,16 @@
+{
+  "port": 4545,
+  "protocol": "http",
+  "name": "Inject Headers",
+  "stubs": [{
+    "responses": [{
+      "proxy": {
+        "to": "http://192.168.1.102:1962",
+        "injectHeaders": {
+          "X-My-Custom-Header-One": "my first value",
+          "X-My-Custom-Header-Two": "my second value"
+        }
+      }
+    }]
+  }]
+}

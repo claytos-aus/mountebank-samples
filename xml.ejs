@@ -1,0 +1,38 @@
+{
+  "port": 4545,
+  "protocol": "http",
+  "defaultResponse": {
+    "statusCode": 400,
+    "body": "Bad Request"
+  },
+  "stubs": [{
+      "responses": [
+        {
+          "is": {
+            "statusCode": 200,
+            "body": "success"
+          },
+          "behaviors": [{
+            "wait": 100
+          }]
+      }],
+      "predicates": [{
+          "and": [{
+            "equals": {
+              "path": "/test",
+              "method": "POST",
+              "headers": { "Content-Type": "application/xml" }
+            }
+          }]
+        },
+        {
+          "exists": { "body": true },
+          "xpath": {
+            "selector": "/ns:books",
+            "ns": {
+              "ns": "http://schemas.isbn.org/ns/1999/basic.dtd"
+            }
+          }
+      }]
+    }]
+}

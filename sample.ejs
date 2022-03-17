@@ -1,0 +1,40 @@
+{
+  "port": 4546,
+  "protocol": "http",
+  "name": "sample",
+  "defaultResponse": {
+    "statusCode": 400,
+    "headers": {
+      "connection": "close"
+    },
+    "body": "Bad Request"
+  },
+  "stubs": [{
+    "responses": [{
+      "is": {
+        "statusCode": 200,
+        "body": "success"
+      }
+    }],
+    "predicates": [{
+      "and": [{
+          "equals": {
+            "path": "/test",
+            "method": "POST",
+            "headers": {
+              "Content-Type": "application/json"
+            }
+          }
+        },
+        {
+          "not": {
+            "contains": {
+              "body": "requiredField"
+            },
+            "caseSensitive": true
+          }
+        }
+      ]
+    }]
+  }]
+}
